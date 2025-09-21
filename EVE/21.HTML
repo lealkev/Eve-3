@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mensajes para Eve</title>
+  <style>
+    :root{--yellow:#f5c400;--bg:linear-gradient(180deg,#fff7d9,#fff);}
+    *{box-sizing:border-box}
+    html,body{height:100%;
+    margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);display:flex;align-items:center;justify-content:center}
+    .container{width:100%;
+    max-width:900px;padding:24px;
+    text-align:center}
+    .card{background:rgba(255,255,255,0.85);
+    border-radius:16px;
+    box-shadow:0 8px 30px rgba(0,0,0,0.12);padding:48px}
+    .btn{appearance:none;border:0;padding:18px 28px;
+    border-radius:12px;
+    background:var(--yellow);
+    color:#222;
+    font-weight:700;font-size:18px;cursor:pointer;
+    box-shadow:0 6px 18px rgba(245,196,0,0.28);
+    transition:transform .12s ease,box-shadow .12s ease}
+    .btn:active{transform:translateY(2px);
+    box-shadow:0 3px 8px rgba(0,0,0,0.12)}
+    .center{display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:18px}
+    .message{font-size:20px;
+    color:#333;min-height:56px;
+    opacity:0;
+    transform:translateY(8px);
+    transition:opacity .36s ease,transform .36s ease}
+    .message.show{opacity:1;transform:none}
+    .flowers{display:flex;flex-wrap:wrap;
+    gap:12px;justify-content:center;
+    margin-top:18px}
+    .flower{width:56px;height:56px;border-radius:50%;display:inline-grid;place-items:center;background:transparent}
+    .flower svg{width:48px;height:48px}
+    .images{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
+    .images img{width:100px;height:100px;object-fit:cover;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
+    .final-card{background:#fffbe6;border-radius:14px;padding:20px;box-shadow:0 10px 30px rgba(0,0,0,0.08);max-width:640px;margin:18px auto}
+    .hidden{display:none}
+    footer{margin-top:14px;font-size:13px;color:#666}
+    @media (max-width:520px){.card{padding:24px}.btn{width:100%;font-size:16px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card center" role="main" aria-live="polite">
+      <div id="stage">
+        <!-- Paso 0: botón inicial -->
+        <div id="step0" class="center">
+          <button id="startBtn" class="btn" aria-label="Presiona aquí">PRECIONA AQUI</button>
+        </div>
+
+        <!-- Paso 1 -->
+        <div id="step1" class="center hidden">
+          <div id="msg1" class="message">NO ES LA GRAN COSA PERO </div>
+          <button id="next1" class="btn">SIGUIENTE</button>
+        </div>
+
+        <!-- Paso 2 -->
+        <div id="step2" class="center hidden">
+          <div id="msg2" class="message">Hola Eve antes q nada no soy muy bueno escribiendo 
+            así q no te vayas a reír de mi porque no soy bueno con las palabras , 
+            sabes  nunca se me dio bien mostrar afecto, ya q me es difícil expresar emociones así q seré breve 
+            sos una persona  la cual vale mucho y bueno  aún no se cómo llegamos a llevarnos tan bien, 
+            después de q casi no hablábamos  jsjsj pero con el tiempo como no tener buena convivencia con vos si sos carismática,
+            risueña siempre trasmites esa chispa de alegría  jeje aunque también sos muy sentida 
+            pero así también soy yo jeje y no se q me pasa pero contigo soy muy distinto ya q regularmente soy serio,
+            no hablo y trato de ser otra persona pero cuando paso tiempo con vos puedo ser yo realmente
+            y soy sincero  siempre are lo posible porque tes feliz aunque  yo mismo te haga enojar jeje,
+            Siempre me haces feliz dime quien no se resistiría ver esa carita Beautiful jsjs 
+            bueno ya alargue esto el motivo de todo esto es q te quería dar este pequeño detalle no se si te agrade   ATT : YO
+</div>
+          <button id="next2" class="btn">SIGUIENTE</button>
+        </div>
+
+        
+        <div id="step3" class="center hidden">
+          <div id="msg3" class="message">TE QUIERO MUCHO</div>
+          <p>FELIZ 21 DE SEPTIEMBRE PEQUEÑA</p>
+          <div class="flowers" id="flowersContainer" aria-hidden="false"></div>
+          <div class="images" id="imagesContainer">
+            <!-- Aquí puedes agregar las imágenes que quieras -->
+            <img src="https://tse3.mm.bing.net/th?id=OIF.rmPBs3ldNnkN7zh4r3t%2bJw&pid=Api&P=0&h=180" alt="Flor 1">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.PikHdzB7KweXUsyAMpbeoAHaE7?pid=Api&P=0&h=180" alt="Flor 2">
+            <img src="https://tse1.mm.bing.net/th/id/OIP._u2GzVsX41Jnsyn3fXf7owHaEw?pid=Api&P=0&h=180" alt="Flor 3">
+          </div>
+          <button id="next3" class="btn">SIGUIENTE</button>
+        </div>
+
+        
+        <div id="step4" class="center hidden">
+          <div class="final-card">
+            <h2>EVE</h2>
+            <p>JAMAS SERAS UNA EXPECTADORA MIENTRAS YO ESTE AQUI </p>
+          </div>
+          <button id="finishBtn" class="btn">FINALIZAR</button>
+        </div>
+
+      </div>
+     
+    </div>
+  </div>
+
+  <script>
+    // Elementos
+    const step0 = document.getElementById('step0');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const step4 = document.getElementById('step4');
+
+    const startBtn = document.getElementById('startBtn');
+    const next1 = document.getElementById('next1');
+    const next2 = document.getElementById('next2');
+    const next3 = document.getElementById('next3');
+    const finishBtn = document.getElementById('finishBtn');
+
+    const msg1 = document.getElementById('msg1');
+    const msg2 = document.getElementById('msg2');
+    const msg3 = document.getElementById('msg3');
+    const flowersContainer = document.getElementById('flowersContainer');
+    const imagesContainer = document.getElementById('imagesContainer');
+
+    // Funciones para mostrar/ocultar pasos
+    function show(el){ el.classList.remove('hidden'); setTimeout(()=>{const m = el.querySelector('.message'); if(m) m.classList.add('show');},20); }
+    function hide(el){ el.classList.add('hidden'); const m = el.querySelector('.message'); if(m) m.classList.remove('show'); }
+
+    // Inicio
+    startBtn.addEventListener('click', ()=>{
+      hide(step0);
+      show(step1);
+      startBtn.setAttribute('aria-pressed','true');
+    });
+
+    next1.addEventListener('click', ()=>{
+      hide(step1);
+      show(step2);
+    });
+
+    next2.addEventListener('click', ()=>{
+      hide(step2);
+      // preparar flores antes de mostrar
+      populateFlowers(12);
+      show(step3);
+    });
+
+    next3.addEventListener('click', ()=>{
+      hide(step3);
+      show(step4);
+    });
+
+    finishBtn.addEventListener('click', ()=>{
+      // reiniciar a estado inicial
+      hide(step4);
+      // limpiar flores
+      flowersContainer.innerHTML = '';
+      imagesContainer.innerHTML = `
+        <img src=\"https://via.placeholder.com/100x100/FFD54D/000000?text=Flor1\" alt=\"Flor 1\">
+        <img src=\"https://via.placeholder.com/100x100/FFEB3B/000000?text=Flor2\" alt=\"Flor 2\">
+        <img src=\"https://via.placeholder.com/100x100/FFF176/000000?text=Flor3\" alt=\"Flor 3\">
+      `;
+      // mostrar inicial
+      show(step0);
+    });
+
+    // Genera flores SVG amarillas
+    function createFlowerSVG(){
+      const svg = `
+        <svg viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"flor\">
+          <g transform=\"translate(12,12)\">
+            <circle cx=\"0\" cy=\"0\" r=\"2.2\" fill=\"#f6b800\" />
+            <g fill=\"#ffd54d\" stroke=\"#f5c400\" stroke-width=\"0.3\">
+              <ellipse rx=\"3.6\" ry=\"1.8\" transform=\"rotate(0) translate(0,-6)\" />
+              <ellipse rx=\"3.6\" ry=\"1.8\" transform=\"rotate(45) translate(0,-6)\" />
+              <ellipse rx=\"3.6\" ry=\"1.8\" transform=\"rotate(90) translate(0,-6)\" />
+              <ellipse rx=\"3.6\" ry=\"1.8\" transform=\"rotate(135) translate(0,-6)\" />
+            </g>
+          </g>
+        </svg>`;
+      return svg;
+    }
+
+    function populateFlowers(n){
+      flowersContainer.innerHTML = '';
+      for(let i=0;i<n;i++){
+        const span = document.createElement('span');
+        span.className = 'flower';
+        span.innerHTML = createFlowerSVG();
+        // ligera animación de entrada
+        span.style.opacity = 0; span.style.transform = 'translateY(12px) scale(.9)';
+        flowersContainer.appendChild(span);
+        setTimeout(((el,delay)=>()=>{ el.style.transition = 'opacity .5s ease, transform .5s ease'; el.style.opacity = 1; el.style.transform = 'none'; })(span,i*70), 80);
+      }
+    }
+
+    // A11y: permitir avanzar con Enter/Space en botones
+    [startBtn,next1,next2,next3,finishBtn].forEach(b=>{
+      b.addEventListener('keydown', e=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } });
+    });
+
+    // Mostrar paso inicial en carga
+    document.addEventListener('DOMContentLoaded', ()=>{
+      show(step0);
+    });
+  </script>
+</body>
+</html>
